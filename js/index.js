@@ -1,22 +1,32 @@
-const title = document.querySelector('.title')
-const text = `Happy Birthday Reyyyyy`.split('')
+const title = document.querySelector('.title');
 
-// Create container for better responsive layout
-title.style.display = 'flex'
-title.style.flexWrap = 'wrap'
-title.style.justifyContent = 'center'
-title.style.gap = '0.5rem'
+const parts = "Happy Birthday Reyyyyy".split(" ");
+const lines = [parts.slice(0, 2).join(" "), parts.slice(2).join(" ")];
 
-for (let index = 0; index < text.length; index++) {
-  if (text[index] !== ' ') {
-    title.innerHTML += `<span>${text[index]}</span>`
-  } else {
-    title.innerHTML += `<span style='width: 1rem'></span>`
+// reset
+title.innerHTML = "";
+
+// styling
+title.style.display = 'flex';
+title.style.flexDirection = 'column';
+title.style.alignItems = 'center';
+title.style.gap = '0.5rem';
+
+// render
+lines.forEach(line => {
+  const lineDiv = document.createElement("div");
+
+  for (let char of line) {
+    const span = document.createElement("span");
+    span.textContent = char === " " ? "\u00A0" : char;
+    lineDiv.appendChild(span);
   }
-}
 
-const textElements = document.querySelectorAll('.title span');
-textElements.forEach((element) => {
-  const randomDelay = Math.random() * 3;
-  element.style.animationDelay = `${randomDelay}s`;
+  title.appendChild(lineDiv);
+});
+
+// animasi
+const textElements = title.querySelectorAll('span');
+textElements.forEach(el => {
+  el.style.animationDelay = `${Math.random() * 3}s`;
 });
