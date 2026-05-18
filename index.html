@@ -29,9 +29,15 @@
       <span class="text">Open</span>
     </a>
   </div>
-  <audio autoplay loop>    
-  <source src="happybirthday.mp3" type="audio/mp3">    
+<audio id="bgMusic" loop>
+  <source src="happybirthday.mp3" type="audio/mp3">
 </audio>
+
+<script>
+document.addEventListener("click", function () {
+  document.getElementById("bgMusic").play();
+}, { once: true });
+</script>
 
   <script src="js/index.js"></script>
 </body>
